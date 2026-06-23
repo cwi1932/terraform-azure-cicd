@@ -21,17 +21,17 @@ resource "azurerm_subnet" "subnet" {
 
 resource "azurerm_network_interface" "nic" {
 
-  name                = "nic-terraform"
+  name = "nic-terraform"
 
-  location            = azurerm_resource_group.rg.location
+  location = azurerm_resource_group.rg.location
 
   resource_group_name = azurerm_resource_group.rg.name
 
   ip_configuration {
 
-    name                          = "internal"
+    name = "internal"
 
-    subnet_id                     = azurerm_subnet.subnet.id
+    subnet_id = azurerm_subnet.subnet.id
 
     private_ip_address_allocation = "Dynamic"
 
@@ -41,15 +41,19 @@ resource "azurerm_network_interface" "nic" {
 
 resource "azurerm_linux_virtual_machine" "vm" {
 
-  name                = "vm-terraform"
+  name = "vm-terraform"
 
   resource_group_name = azurerm_resource_group.rg.name
 
-  location            = azurerm_resource_group.rg.location
+  location = azurerm_resource_group.rg.location
 
-  size                = "Standard_B1s"
+  size = "Standard_B1s"
 
-  admin_username      = "azureuser"
+  admin_username = "azureuser"
+  admin_ssh_key {
+  username   = "azureuser"
+  public_key = file("/Users/pramodsasi/.ssh/id_rsa.pub")
+}
 
   network_interface_ids = [
     azurerm_network_interface.nic.id
@@ -67,6 +71,6 @@ resource "azurerm_linux_virtual_machine" "vm" {
     version   = "latest"
   }
 
- 
+
 }
 
