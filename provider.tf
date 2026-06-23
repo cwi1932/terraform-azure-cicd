@@ -19,6 +19,7 @@ backend "azurerm" {
   storage_account_name = "tfstatepramod23062026"
   container_name       = "tfstate"
   key                   = "terraform.tfstate"
+  use_azuread_auth      = true
  }
 }
 
@@ -27,3 +28,4 @@ provider "azurerm" {
   features {}
 
 }
+
