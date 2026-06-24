@@ -31,7 +31,7 @@ resource "azurerm_network_interface" "nic" {
 
     name = "internal"
 
-    subnet_id = azurerm_subnet.subnet.id
+    subnet_id                     = azurerm_subnet.subnet.id
     private_ip_address_allocation = "Dynamic"
 
   }
@@ -53,9 +53,9 @@ resource "azurerm_linux_virtual_machine" "vm" {
 
   admin_username = "azureuser"
   admin_ssh_key {
-  username   = "azureuser"
-  public_key = tls_private_key.ssh.public_key_openssh
-}
+    username   = "azureuser"
+    public_key = tls_private_key.ssh.public_key_openssh
+  }
 
   network_interface_ids = [
     azurerm_network_interface.nic.id
