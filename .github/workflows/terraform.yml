@@ -17,22 +17,14 @@ jobs:
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
-    
-
-      - name: Parse Azure Credentials Text
-       
-        run: |
-          echo "$CREDS" | while read -r line; do
-            if [ -n "$line" ]; then
-              cleaned=$(echo "$line" | tr -d '"' | sed 's/AZURE_/ARM_/g')
-              echo "$cleaned" >> $GITHUB_ENV
-            fi
-          done
-        env:
-          CREDS: ${{ secrets.ENCRYPTED_AZURE }}
 
       - name: Terraform Init
         run: terraform init
+        env:
+           ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }} 
+           ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }} 
+           ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+           ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: Terraform Format Check
         run: terraform fmt -check
