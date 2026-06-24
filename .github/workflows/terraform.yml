@@ -11,22 +11,29 @@ on:
 jobs:
   terraform:
     runs-on: ubuntu-latest
+
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
+      - name:  Verify Secret Presence
+        run: |
+          if [ -z "${{ secrets.AZURE_Tenant_ID }}" ]; then
+            echo "Error: AZURE_Tenant_ID  is empty or not found."
+          else  
+            echo "AZURE_Tenant_ID is present."
+          fi  
 
       - name: Terraform Init
+        run: terraform init
         env:
           ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
           ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
           ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
           ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-
-
-        run: terraform init
 
       - name: Terraform Format Check
         run: terraform fmt -check
