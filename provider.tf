@@ -11,7 +11,10 @@ terraform {
       version = "~> 4.0"
 
     }
-
+    tls = {
+      source  = "hashicorp/tls"
+      version = "~> 4.0"
+   }
   }
 
   backend "azurerm" {
@@ -20,7 +23,7 @@ terraform {
     container_name       = "tfstate"
     key                  = "terraform.tfstate"
 
-    use_azuread_auth = false
+    use_azuread_auth = true
 
   }
 }
