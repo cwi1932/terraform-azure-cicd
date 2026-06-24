@@ -14,15 +14,15 @@ terraform {
 
   }
 
-backend "azurerm" {
-  resource_group_name = "rg-tfstate"
-  storage_account_name = "tfstatepramod23062026"
-  container_name       = "tfstate"
-  key                   = "terraform.tfstate"
-  
-  use_azuread_auth = false
+  backend "azurerm" {
+    resource_group_name  = "rg-tfstate"
+    storage_account_name = "tfstatepramod23062026"
+    container_name       = "tfstate"
+    key                  = "terraform.tfstate"
 
- }
+    use_azuread_auth = false
+
+  }
 }
 
 provider "azurerm" {

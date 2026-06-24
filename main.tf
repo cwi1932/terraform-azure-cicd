@@ -51,9 +51,9 @@ resource "azurerm_linux_virtual_machine" "vm" {
 
   admin_username = "azureuser"
   admin_ssh_key {
-  username   = "azureuser"
-  public_key = file("/Users/pramodsasi/.ssh/id_rsa.pub")
-}
+    username   = "azureuser"
+    public_key = file("/Users/pramodsasi/.ssh/id_rsa.pub")
+  }
 
   network_interface_ids = [
     azurerm_network_interface.nic.id
