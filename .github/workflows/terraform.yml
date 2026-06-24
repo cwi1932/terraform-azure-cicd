@@ -3,14 +3,19 @@ name: Terraform CI/CD
 on:
   pull_request:
     branches: [main]
-
   push:
     branches: [main]
+
+env:
+  ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+  ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+  ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION }}
+  ARM_USE_AZUREAD: "true"
 
 jobs:
   terraform:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -19,13 +24,7 @@ jobs:
         uses: hashicorp/setup-terraform@v3
 
       - name: Terraform Init
-        run:  terraform init
-                
-        env:
-           ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-           ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
-           ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-           ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION }}
+        run: terraform init
 
       - name: Terraform Format Check
         run: terraform fmt -check
