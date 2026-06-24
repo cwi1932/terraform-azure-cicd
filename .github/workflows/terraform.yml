@@ -21,7 +21,7 @@ jobs:
         uses: hashicorp/setup-terraform@v3
       - name:  Parse Azure Credentials JSON
         run: |
-          echo "ARM_CLIENT_ID=$)echo '$CREDS' | jq -r '.clientId')" >> $GITHUB_ENV
+          echo "ARM_CLIENT_ID=$(echo '$CREDS' | jq -r '.clientId')" >> $GITHUB_ENV
           echo "ARM_CLIENT_SECRET= $(echo '$CREDS' | jq -r '.clientSecret')" >> $GITHUB_ENV
           echo "ARM_TENANT_ID=$(echo '$CREDS' | jq -r '.tenantId')" >> $GITHUB_ENV
           echo "ARM_SUBSCRIPTION_ID=$(echo '$CREDS' | jq -r '.subscriptionId')" >> $GITHUB_ENV
