@@ -16,13 +16,21 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Azure Login
-        uses: azure/login@v2
-        with:
+      
           creds: ${{ secrets.ENCRYPTED_AZURE }}  
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
+# READ THE PLAIN TEXT CREDENTIALS AND CONVERT THEM FOR TERRAFORM 
+      - name: Parse Azure Credentials Text 
+        run: | 
+         echo "$CREDS" | while read -r line; do 
+           if [ -n "$line" ]; then 
+             # Remove any accidental double quotes and swap AZURE_ for ARM_  
+             cleaned=$(echo "$line" | tr -d '"' | sed 's/AZURE_/ARM_/g') 
+             echo "$cleaned" >> $GITHUB_ENV 
+           fi
+         done
       
       - name: Terraform Init
         run: terraform init
