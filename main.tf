@@ -49,7 +49,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
 
   location = azurerm_resource_group.rg.location
 
-  size = "Standard_B2s"
+  size = "Standard_D2s_v7"
 
   admin_username = "azureuser"
   admin_ssh_key {
