@@ -11,7 +11,7 @@ A complete Infrastructure-as-Code project: a Linux virtual machine deployed to A
 | Resource Group | Container for all project resources |
 | Virtual Network + Subnet | Private network for the VM |
 | Network Interface | Connects the VM to the subnet |
-| Linux Virtual Machine (Ubuntu 22.04 LTS) | The compute resource |
+| Linux Virtual Machine (Ubuntu 22.04 Jammy) | The compute resource |
 | TLS Key Pair (auto-generated) | SSH access, generated at `apply` time — no dependency on local files |
 
 State is stored remotely in an Azure Storage Account (separate from the resources above), enabling the CI/CD pipeline to run on GitHub-hosted runners.
