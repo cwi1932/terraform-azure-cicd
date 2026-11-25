@@ -1,0 +1,45 @@
+{
+    "version": 3,
+    "serial": 5,
+    "lineage": "1d3b0161-bb7a-5244-641a-3b5bcb7437ee",
+    "backend": {
+        "type": "azurerm",
+        "config": {
+            "access_key": null,
+            "client_certificate_password": null,
+            "client_certificate_path": null,
+            "client_id": null,
+            "client_secret": null,
+            "container_name": "tfstate",
+            "endpoint": null,
+            "environment": null,
+            "key": "terraform.tfstate",
+            "metadata_host": null,
+            "msi_endpoint": null,
+            "oidc_request_token": null,
+            "oidc_request_url": null,
+            "oidc_token": null,
+            "oidc_token_file_path": null,
+            "resource_group_name": "rg-tfstate",
+            "sas_token": null,
+            "snapshot": null,
+            "storage_account_name": "tfstatepramod23062026",
+            "subscription_id": null,
+            "tenant_id": null,
+            "use_azuread_auth": true,
+            "use_msi": null,
+            "use_oidc": null
+        },
+        "hash": 1960761394
+    },
+    "modules": [
+        {
+            "path": [
+                "root"
+            ],
+            "outputs": {},
+            "resources": {},
+            "depends_on": []
+        }
+    ]
+}

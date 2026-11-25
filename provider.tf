@@ -17,12 +17,13 @@ terraform {
     }
   }
 
-  
+
 }
 
 provider "azurerm" {
 
   features {}
-
+  #Enable OIDC authentication
+  use_oidc = true
 }
 
